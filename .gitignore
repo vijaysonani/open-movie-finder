@@ -22,8 +22,6 @@
 
 .idea
 
-public/*
-
 node_modules
 
 # Ignore spec assets
