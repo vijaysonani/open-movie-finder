@@ -17,7 +17,7 @@ class Movie extends Component {
   }
 
   componentWillMount() {
-    axios.get('http://www.omdbapi.com/?i=tt3896198&apikey=877a08ec')
+    axios.get('https://www.omdbapi.com/?i=tt3896198&apikey=877a08ec')
       .then((response) => {
       console.log(response.data);
         this.setState(
