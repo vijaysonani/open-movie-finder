@@ -1,13 +1,14 @@
 import { EventEmitter } from 'events';
 import assign from 'object-assign';
 
-import MoviesWebAPIUtils from './MoviesWebAPIUtils';
+import MoviesListWebAPIUtils from './MoviesListWebAPIUtils';
 import AppDispatcher from '../utils/AppDispatcher';
 import ActionTypes from '../utils/ActionTypes';
+import MoviesListActionCreators from './MoviesListActionCreators';
 
 const CHANGE_EVENT = 'change';
+let moviesList = MoviesListActionCreators.clickMovieSearch('star');
 
-let moviesList = null;
 
 const MoviesListStore = assign({}, EventEmitter.prototype, {
 
@@ -32,15 +33,15 @@ const MoviesListStore = assign({}, EventEmitter.prototype, {
 MoviesListStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.type) {
     case ActionTypes.CLICK_SEARCH_MOVIES_BUTTON:
-      MoviesWebAPIUtils.getMoviesLists(action.searchText);
+      MoviesListWebAPIUtils.getMoviesLists(action.searchText);
       MoviesListStore.emitChange();
       break;
     case ActionTypes.RECEIVE_MOVIES_LIST:
-      moviesList = action.moviesList;
+      moviesList = action.moviesList.Search;
       MoviesListStore.emitChange();
       break;
     case ActionTypes.RECEIVE_MOVIES_LIST_FAILURE:
-      console.log('Movies list retrieval failed.');
+      console.log(action.msg);
       MoviesListStore.emitChange();
       break;
     default:
@@ -48,4 +49,4 @@ MoviesListStore.dispatchToken = AppDispatcher.register((action) => {
   }
 });
 
-module.exports = MoviesListStore;
+export default MoviesListStore;

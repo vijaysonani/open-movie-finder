@@ -1,5 +1,6 @@
 {
   "name": "open-movie-finder",
+  "private": true,
   "engines": {
     "node": "6.3.1"
   },

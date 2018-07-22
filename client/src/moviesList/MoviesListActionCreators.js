@@ -16,9 +16,10 @@ const MoviesListActionCreatores = {
     });
   },
 
-  receiveMovieListFailure() {
+  receiveMovieListFailure(msg) {
     AppDispatcher.dispatch({
       type: ActionTypes.RECEIVE_MOVIES_LIST_FAILURE,
+      msg,
     });
   },
 

@@ -1,32 +1,30 @@
 import React, { Component } from 'react';
 import { Input, Button, Segment } from 'semantic-ui-react';
-// import MoviesListWebAPIUtils from '../../moviesList/MoviesListWebAPIUtils'
+import MoviesListWebAPIUtils from '../../moviesList/MoviesListWebAPIUtils';
 
 class SearchView extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      temp: null,
-    };
     this.handleRef = this.handleRef.bind(this);
     this.onClick = this.onClick.bind(this);
   }
 
   onClick() {
-    console.log(this.inputRef);
-    console.log('Search button clicked');
-    // MoviesListWebAPIUtils.getMoviesLists('');
+    MoviesListWebAPIUtils.getMoviesLists(this.inputNode.inputRef.value);
   }
 
-  handleRef(c) {
-    this.setState({ temp: c });
+  handleRef(node) {
+    this.inputNode = node;
   }
 
   render() {
     return (
       <Segment vertical textAlign="center">
-        <Input ref={this.handleRef} placeholder="Find movies by title..." />
+        <Input
+          ref={(node) => { this.handleRef(node); }}
+          placeholder="Find movies by title..."
+        />
         &nbsp;
         <Button content="Search" onClick={this.onClick} />
       </Segment>
