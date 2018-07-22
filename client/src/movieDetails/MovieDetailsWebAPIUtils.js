@@ -1,4 +1,6 @@
+import $ from 'jquery';
 import MovieAppUtils from '../utils/MovieAppUtils';
+import MovieDetailActionCreators from './MovieDetailActionCreators';
 
 const MovieDetailsWebAPIUtils = {
   getMovieDetail(movieId) {
@@ -8,12 +10,12 @@ const MovieDetailsWebAPIUtils = {
       url: uri,
       type: 'GET',
 
-      success() {
-        console.log('SuccessDetails');
+      success(data) {
+        MovieDetailActionCreators.receiveMovieDetailSuccess(data);
       },
 
       error() {
-        console.log('FailedDetails');
+        MovieDetailActionCreators.receiveMovieDetailFailure('Movie details could not be retrieved.');
       },
     });
   },

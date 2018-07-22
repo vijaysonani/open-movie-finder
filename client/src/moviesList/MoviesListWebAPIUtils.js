@@ -3,8 +3,8 @@ import MovieAppUtils from '../utils/MovieAppUtils';
 import MoviesListActionCreators from './MoviesListActionCreators';
 
 const MoviesListWebAPIUtils = {
-  getMoviesLists(keyword) {
-    const uri = MovieAppUtils.getServerRoute('&s='.concat(keyword));
+  getMoviesLists(searchText) {
+    const uri = MovieAppUtils.getServerRoute('&s='.concat(searchText === '' ? 'star' : searchText));
 
     $.ajax({
       url: uri,

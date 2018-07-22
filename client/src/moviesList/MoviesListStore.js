@@ -4,11 +4,11 @@ import assign from 'object-assign';
 import MoviesListWebAPIUtils from './MoviesListWebAPIUtils';
 import AppDispatcher from '../utils/AppDispatcher';
 import ActionTypes from '../utils/ActionTypes';
-import MoviesListActionCreators from './MoviesListActionCreators';
 
 const CHANGE_EVENT = 'change';
-let moviesList = MoviesListActionCreators.clickMovieSearch('star');
 
+let moviesList = MoviesListWebAPIUtils.getMoviesLists('');
+let searchText = '';
 
 const MoviesListStore = assign({}, EventEmitter.prototype, {
 
@@ -28,12 +28,17 @@ const MoviesListStore = assign({}, EventEmitter.prototype, {
     return moviesList;
   },
 
+  getSearchText() {
+    return searchText;
+  },
+
 });
 
 MoviesListStore.dispatchToken = AppDispatcher.register((action) => {
   switch (action.type) {
     case ActionTypes.CLICK_SEARCH_MOVIES_BUTTON:
-      MoviesListWebAPIUtils.getMoviesLists(action.searchText);
+      searchText = action.searchText;
+      MoviesListWebAPIUtils.getMoviesLists(searchText);
       MoviesListStore.emitChange();
       break;
     case ActionTypes.RECEIVE_MOVIES_LIST:

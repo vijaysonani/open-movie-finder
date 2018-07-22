@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
+import { Container, Header } from 'semantic-ui-react';
 
 import MoviesListStore from './moviesList/MoviesListStore';
-import MoviesListActionCreators from './moviesList/MoviesListActionCreators';
+import MovieDetailStore from './movieDetails/MovieDetailStore';
 import MoviesListView from './moviesList/components/MoviesListView';
+import MovieDetailView from './movieDetails/components/MovieDetailView';
 
 function getStateFromStore() {
   return {
-    movies: MoviesListStore.getMoviesList(),
+    moviesList: MoviesListStore.getMoviesList(),
+    searchText: MoviesListStore.getSearchText(),
+    movieDetails: MovieDetailStore.getMovieDetail(),
   };
 }
 
 class Movie extends Component {
   constructor(props) {
     super(props);
-    MoviesListActionCreators.clickMovieSearch('star');
+
     this.state = getStateFromStore();
     this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
     MoviesListStore.addChangeListener(this.onChange);
+    MovieDetailStore.addChangeListener(this.onChange);
   }
 
   componentWillUnmount() {
     MoviesListStore.removeChangeListener(this.onChange);
+    MovieDetailStore.removeChangeListener(this.onChange);
   }
 
   onChange() {
@@ -31,8 +37,28 @@ class Movie extends Component {
   }
 
   render() {
+    const sectionText = this.state.searchText === '' ? 'Popular movies' : 'Results for "'.concat(this.state.searchText).concat('"');
+    const sectionHeader = <Header as="h2" dividing>{sectionText}</Header>;
+    let content;
+
+    if (this.state.movieDetails) {
+      content = (
+        <MovieDetailView />
+      );
+    } else {
+      content = (
+        <Container>
+          {sectionHeader}
+          <Header as="h1" />
+          <MoviesListView moviesList={this.state.moviesList} />
+        </Container>
+      );
+    }
+
     return (
-      <MoviesListView moviesList={this.state.movies} />
+      <Container>
+        {content}
+      </Container>
     );
   }
 }
