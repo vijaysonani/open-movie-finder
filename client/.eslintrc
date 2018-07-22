@@ -1,0 +1,31 @@
+{
+  "extends": "airbnb",
+  "plugins": [
+    "react",
+    "import",
+    "jsx-a11y"
+  ],
+  "env": {
+    "browser": true,
+    "jest": true
+  },
+  "rules": {
+    "max-len": "off", // Remove warnings on max line length exceeding 100 characters
+    "react/require-default-props": "off", // Disabled the requirement to default all non-required props
+    "no-multi-assign": "off", // TODO: Decide if we want to turn this on. It was turned on in eslint-config-airbnb-base v14.1
+    "jsx-a11y/label-has-for": "off", // This would require updates to several of our common components.  Hopefully as we migrate to terra components some of these will be resolved.
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["__tests__/**", "__helpers__/**", "__mocks__/**", "webpack.config.client.js"]}],
+  },
+  "globals": {
+    "shallow": true,
+    "render": true,
+    "mount": true,
+    "Terra": true,
+    "PCTDocCommon": true,
+    "IonDemographicsEngineGlobalContext": true,
+    "MSGCTROrders": true,  // TODO: Remove this with MSGCTR-5097
+    "Canadarm": true,  // TODO: Remove this with MSGCTR-5097
+    "$": true,
+    "jasmine",
+  }
+}

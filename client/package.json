@@ -4,12 +4,25 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
+    "flux": "2.1.1",
+    "jquery": "2.1.4",
+    "keymirror": "0.1.1",
+    "object-assign": "4.1.1",
+    "prop-types": "15.5.10",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-scripts": "1.0.14",
     "semantic-ui-css": "^2.2.9",
     "semantic-ui-react": "^0.67.0",
     "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.0",
+    "eslint-loader": "^1.7.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^5.0.0",
+    "eslint-plugin-react": "^7.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

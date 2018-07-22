@@ -1,0 +1,9 @@
+// import keymirror from 'keymirror';
+
+const ActionTypes = {
+  CLICK_SEARCH_MOVIES_BUTTON: 'CLICK_SEARCH_MOVIES_BUTTON',
+  RECEIVE_MOVIES_LIST: 'RECEIVE_MOVIES_LIST',
+  RECEIVE_MOVIES_LIST_FAILURE: 'RECEIVE_MOVIES_LIST_FAILURE',
+};
+
+export default ActionTypes;

@@ -1,17 +1,30 @@
-import React, { Component } from 'react';
-import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider } from 'semantic-ui-react';
-import Movie from "./Movie";
+import React from 'react';
+import { Button, Container, Header, Segment } from 'semantic-ui-react';
 
-class App extends Component {
-  render () {
-    return (
-      <div>
-        <Container>
-          <Movie/>
-        </Container>
-      </div>
-    );
-  }
-}
+import Movie from './Movie';
+import SearchView from './moviesList/components/SearchView';
+
+const App = () => (
+  <Container style={{ marginTop: '2em' }}>
+    <Segment clearing inverted>
+      <Header as="h1" floated="left">Movie Finder</Header>
+      <Header as="h1" floated="right" inverted>
+        <Button content="GitHub" primary onClick={() => { window.open('https://github.com/vijaysonani/open-movie-finder'); }} />
+      </Header>
+    </Segment>
+
+    <Header as="h3" dividing />
+    <Header as="h1" />
+
+    <Container>
+      <SearchView />
+    </Container>
+
+    <Header as="h1" />
+    <Header as="h1" />
+
+    <Movie />
+  </Container>
+);
 
 export default App;
