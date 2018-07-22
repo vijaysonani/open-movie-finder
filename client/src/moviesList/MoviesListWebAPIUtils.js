@@ -11,15 +11,11 @@ const MoviesListWebAPIUtils = {
       type: 'GET',
 
       success(data) {
-        if (data && data.Response === 'True') {
-          MoviesListActionCreators.receiveMovieListSuccess(data);
-        } else {
-          MoviesListActionCreators.receiveMovieListFailure('Too many search results returned. Please narrow your search.');
-        }
+        MoviesListActionCreators.receiveMovieListSuccess(data);
       },
 
       error() {
-        MoviesListActionCreators.receiveMovieListFailure('Movies list retrieval failed.');
+        MoviesListActionCreators.receiveMovieListFailure();
       },
     });
   },
