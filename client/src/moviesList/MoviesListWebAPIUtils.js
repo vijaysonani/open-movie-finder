@@ -1,10 +1,9 @@
 import $ from 'jquery';
-import MovieAppUtils from '../utils/MovieAppUtils';
 import MoviesListActionCreators from './MoviesListActionCreators';
 
 const MoviesListWebAPIUtils = {
   getMoviesLists(searchText) {
-    const uri = MovieAppUtils.getServerRoute('&s='.concat(searchText === '' ? 'star' : searchText));
+    const uri = 'movies_list/'.concat(searchText === '' ? 'star' : searchText);
 
     $.ajax({
       url: uri,

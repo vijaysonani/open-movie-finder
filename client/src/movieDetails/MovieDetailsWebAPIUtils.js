@@ -1,13 +1,10 @@
 import $ from 'jquery';
-import MovieAppUtils from '../utils/MovieAppUtils';
 import MovieDetailActionCreators from './MovieDetailActionCreators';
 
 const MovieDetailsWebAPIUtils = {
   getMovieDetail(movieId) {
-    const uri = MovieAppUtils.getServerRoute('&i='.concat(movieId));
-
     $.ajax({
-      url: uri,
+      url: 'movie_details/'.concat(movieId),
       type: 'GET',
 
       success(data) {
